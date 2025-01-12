@@ -1,16 +1,15 @@
 package com.auroral.pojo;
 
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
-import lombok.NonNull;
 
 import java.time.LocalDateTime;
+
 //lombok 在编译阶段，为实体类自动生成setter、getter、toString、equals、hashCode方法
 //pom文件中引入依赖，在实体类中引入注解
 @Data

@@ -14,12 +14,12 @@ public class ThreadLocalTest {
             System.out.println(Thread.currentThread().getName() + ":" + tl.get());
             System.out.println(Thread.currentThread().getName() + ":" + tl.get());
             System.out.println(Thread.currentThread().getName() + ":" + tl.get());
-        },"蓝色").start();
+        }, "蓝色").start();
         new Thread(() -> {
             tl.set("药尘");
             System.out.println(Thread.currentThread().getName() + ":" + tl.get());
             System.out.println(Thread.currentThread().getName() + ":" + tl.get());
             System.out.println(Thread.currentThread().getName() + ":" + tl.get());
-        },"绿色").start();
+        }, "绿色").start();
     }
 }

@@ -28,8 +28,7 @@ public class JwtTest {
     @Test
     public void testParse() {
         //定义字符串，模拟用户传递过来的token
-        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMSIsInVzZXJuYW1lIjoi5" +
-                "byg5LiJIn0sImV4cCI6MTczNjcyNDE2OX0.yRZF2H8mIOo2Ka2t69xsYAtSauIH1MAkLWsuPdw1coU";
+        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMSIsInVzZXJuYW1lIjoi5byg5LiJIn0sImV4cCI6MTczNjc5MTU3NX0.gfHkNHmkcm4nQ8aw5UuymdiY3bfEjsypj2TSAY7K56U";
         //解析token
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256("auroral")).build();//验证算法和密钥
         DecodedJWT decodedJWT = jwtVerifier.verify(token);//验证token,生成一个解析后的JWT对象

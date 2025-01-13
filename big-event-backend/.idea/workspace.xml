@@ -4,7 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bdb876c-5448-411f-978d-b7a1ea6c8fe0" name="更改" comment="修复仓库" />
+    <list default="true" id="6bdb876c-5448-411f-978d-b7a1ea6c8fe0" name="更改" comment="feat: 仓库优化">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f3c199e7-fac8-4936-bf0f-86b19ceada5d.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f3c199e7-fac8-4936-bf0f-86b19ceada5d/storage_v2/_src_/schema/big_event.m5ISTg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f3c199e7-fac8-4936-bf0f-86b19ceada5d/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f3c199e7-fac8-4936-bf0f-86b19ceada5d/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/f3c199e7-fac8-4936-bf0f-86b19ceada5d/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/jsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/assets/base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/assets/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/assets/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/components/HelloWorld.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/components/TheWelcome.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/components/WelcomeItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/components/icons/IconCommunity.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/components/icons/IconDocumentation.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/components/icons/IconEcosystem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/components/icons/IconSupport.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/components/icons/IconTooling.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/src/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../big-event-frontend/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="master" />
+        <entry key="$PROJECT_DIR$/.." value="5b2d66cd9fb3a1d3803da3522ce6c47e8b312fb6" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -49,6 +78,7 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;Spring Boot.BigEventApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -129,6 +159,10 @@
       <workItem from="1736772003562" duration="43000" />
       <workItem from="1736772130975" duration="474000" />
       <workItem from="1736772640694" duration="196000" />
+      <workItem from="1736772875026" duration="316000" />
+      <workItem from="1736773214499" duration="173000" />
+      <workItem from="1736774158053" duration="364000" />
+      <workItem from="1736774595874" duration="2000" />
     </task>
     <task id="LOCAL-00001" summary="修复仓库">
       <option name="closed" value="true" />
@@ -146,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736771853455</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: 仓库优化">
+      <option name="closed" value="true" />
+      <created>1736772954776</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1736772954776</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,6 +220,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="revert(): 回滚全部文件到前一个版本，删除了多个实现类和配置文件&#10;&#10;Signed-off-by: 俞云烽 &lt;1957689514@qq.com&gt;" />
     <MESSAGE value="修复仓库" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复仓库" />
+    <MESSAGE value="feat: 仓库优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 仓库优化" />
   </component>
 </project>

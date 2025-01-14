@@ -35,7 +35,7 @@ const onCurrentChange = (num) => {
     articleList()
 }
 //回显文章分类
-import { articleCategoryListService ,articleListService} from '@/api/article.js'
+import { articleCategoryListService ,articleListService,articleAddService,articleUpdateService,articleDeleteService} from '@/api/article.js'
 const articleCategoryList = async () => {
     let result = await articleCategoryListService()
     categorys.value = result.data
@@ -74,6 +74,8 @@ const articleList = async () => {
 articleList()
 
 import {Plus} from '@element-plus/icons-vue'
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 //控制抽屉是否显示
 const visibleDrawer = ref(false)
 //添加表单数据模型
@@ -84,6 +86,104 @@ const articleModel = ref({
     content:'',
     state:''
 })
+
+
+//导入token
+import { useTokenStore } from '@/stores/token.js'
+const tokenStore = useTokenStore()
+
+//上传成功的回调函数
+const uploadSuccess = (result) => {
+    articleModel.value.coverImg = result.data
+    console.log(result.data)
+}
+
+
+//添加文字
+import {ElMessage} from 'element-plus'
+const addArticle = async (clickState)=> {
+    //把发布状态赋值给数据模型
+    articleModel.value.state = clickState
+
+    //调用接口
+    let result = await articleAddService(articleModel.value)
+    ElMessage.success(result.msg?result.msg:"添加成功")
+
+    //让抽屉消失
+    visibleDrawer.value = false
+    //刷新当前列表
+    articleList()
+}
+
+//设置抽屉的名称是添加还是修改
+const drawerTitle = ref('')
+
+//添加文章
+const clickAddArticle = () => {
+    visibleDrawer.value = true
+    drawerTitle.value = '添加文章'
+    articleModel.value = {
+        title: '',
+        categoryId: '',
+        coverImg: '',
+        content:'<p><p/>',
+        state:''
+    }
+}
+
+//点击修改文件按钮
+const clickEditArticle = (row) => {
+    visibleDrawer.value = true
+    drawerTitle.value = '修改文章'
+    articleModel.value = row
+}
+
+//修改文章
+const updateArticle = async (clickState)=> {
+    //把发布状态赋值给数据模型
+    articleModel.value.state = clickState
+
+    //调用接口
+    let result = await articleUpdateService(articleModel.value)
+    ElMessage.success(result.msg?result.msg:"修改成功")
+
+    //让抽屉消失
+    visibleDrawer.value = false
+    //刷新当前列表
+    articleList()
+}
+
+import {ElMessageBox} from 'element-plus'
+//删除文章
+const deleteArticle = async (row) => {
+    //显示确认框
+    ElMessageBox.confirm(
+        '您确定要删除该文章信息吗？',
+        '温馨提示',
+        {
+            confirmButtonText: '确认',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(async () => {
+            //调用删除文章的接口
+            let result = await articleDeleteService(row.id)
+            ElMessage({
+                type: 'success',
+                message: '删除成功',
+            })
+            //刷新列表
+            articleList();
+        })
+        .catch(() => {
+            ElMessage({
+                type: 'info',
+                message: '用户取消了删除',
+            })
+        })
+}
+
 </script>
 <template>
     <el-card class="page-container">
@@ -91,7 +191,7 @@ const articleModel = ref({
             <div class="header">
                 <span>文章管理</span>
                 <div class="extra">
-                    <el-button type="primary">添加文章</el-button>
+                    <el-button type="primary" @click="clickAddArticle()">添加文章</el-button>
                 </div>
             </div>
         </template>
@@ -127,8 +227,8 @@ const articleModel = ref({
             <el-table-column label="状态" prop="state"></el-table-column>
             <el-table-column label="操作" width="100">
                 <template #default="{ row }">
-                    <el-button :icon="Edit" circle plain type="primary"></el-button>
-                    <el-button :icon="Delete" circle plain type="danger"></el-button>
+                    <el-button :icon="Edit" circle plain type="primary" @click="clickEditArticle(row)"></el-button>
+                    <el-button :icon="Delete" circle plain type="danger" @click="deleteArticle(row)"></el-button>
                 </template>
             </el-table-column>
             <template #empty>
@@ -139,8 +239,10 @@ const articleModel = ref({
         <el-pagination v-model:current-page="pageNum" v-model:page-size="pageSize" :page-sizes="[3, 5 ,10, 15]" 
             layout="jumper, total, sizes, prev, pager, next" :total="total" @size-change="onSizeChange"
             @current-change="onCurrentChange" style="margin-top: 20px; justify-content: flex-end"/>
+
+
         <!-- 抽屉 -->
-        <el-drawer v-model="visibleDrawer" title="添加文章" direction="rtl" size="50%">
+        <el-drawer v-model="visibleDrawer" :title=drawerTitle direction="rtl" size="50%">
             <!-- 添加文章表单 -->
             <el-form :model="articleModel" label-width="100px" >
                 <el-form-item label="文章标题" >
@@ -154,7 +256,21 @@ const articleModel = ref({
                 </el-form-item>
                 <el-form-item label="文章封面">
 
-                    <el-upload class="avatar-uploader" :auto-upload="false" :show-file-list="false">
+
+
+                    <!-- 
+                    auto-upload:设置是否自动上传
+                    action:设置服务器接口路径
+                    name:设置上传的文件字段名
+                    headers:设置上传的请求头
+                    on-success:设置上传成功后的回调函数
+                    -->
+                    <el-upload class="avatar-uploader" :auto-upload="true" :show-file-list="false"
+                    action="/api/upload"
+                    name="file"
+                    :headers="{Authorization:tokenStore.token}"
+                    :on-success="uploadSuccess"
+                    >
                         <img v-if="articleModel.coverImg" :src="articleModel.coverImg" class="avatar" />
                         <el-icon v-else class="avatar-uploader-icon">
                             <Plus />
@@ -162,11 +278,18 @@ const articleModel = ref({
                     </el-upload>
                 </el-form-item>
                 <el-form-item label="文章内容">
-                    <div class="editor">富文本编辑器</div>
+                    <div class="editor">
+                        <quill-editor
+                                      theme="snow"
+                                      v-model:content="articleModel.content"
+                                      contentType="html"
+                                      >
+                        </quill-editor>
+                        </div>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary">发布</el-button>
-                    <el-button type="info">草稿</el-button>
+                    <el-button type="primary" @click="drawerTitle=='添加文章'?addArticle('已发布'):updateArticle('已发布')">发布</el-button>
+                    <el-button type="info"  @click="drawerTitle=='添加文章'?addArticle('草稿'):updateArticle('草稿')">草稿</el-button>
                 </el-form-item>
             </el-form>
         </el-drawer>
@@ -217,7 +340,7 @@ const articleModel = ref({
 .editor {
   width: 100%;
   :deep(.ql-editor) {
-    min-height: 200px;
+    min-height: 500px;
   }
 }
 </style>

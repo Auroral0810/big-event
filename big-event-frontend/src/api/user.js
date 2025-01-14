@@ -19,3 +19,27 @@ export const userLoginService = (loginData) => {
         }
     return request.post('/user/login', params);
 }
+
+//获取用户详细信息
+export const userInfoService = ()=>{
+    return request.get('/user/userInfo')
+}
+
+//更新用户信息
+export const userInfoUpdateService = (userInfo) => {
+    return request.put('/user/update', userInfo)
+}
+
+//上传头像，使用patch请求
+export const uploadAvatarService = (imgUrl) => {
+    const params = new URLSearchParams()
+    params.append('avatarUrl', imgUrl)
+    return request.patch('/user/updateAvatar', params)
+}
+
+//修改密码
+export const userResetPasswordService = (passwordData) => {
+    //打印调试信息，看看发送的请求
+    console.log(passwordData)
+    return request.patch('/user/updatePwd', passwordData)
+}

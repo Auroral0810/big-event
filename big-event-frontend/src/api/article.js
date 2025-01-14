@@ -26,3 +26,17 @@ export const articleCategoryDeleteService = (id) => {
 export const articleListService = (params) => {
     return request.get('/article',{params:params})
 }
+
+//文章添加
+export const articleAddService = (articleData) => {
+    return request.post('/article',articleData)
+}
+//文章修改
+export const articleUpdateService = (articleData) => {
+    return request.put('/article',articleData)
+}
+
+//文章删除
+export const articleDeleteService = (id) => {
+    return request.delete(`/article?id=${id}`)
+}

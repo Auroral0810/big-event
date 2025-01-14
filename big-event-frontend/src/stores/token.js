@@ -27,3 +27,5 @@ export const useTokenStore = defineStore('token',()=>{
     persist:true//实现持续化存储
 }
 )
+
+export default useTokenStore
